@@ -1,4 +1,4 @@
-package com.mo.kgaodelib;
+package com.mo.kgaodelib.util;
 
 /**
  * @ author：mo
