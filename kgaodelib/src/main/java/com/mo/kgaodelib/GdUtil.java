@@ -14,7 +14,7 @@ import com.amap.api.navi.model.AMapNaviLocation;
 /*
  * 作者：M
  * 日期：2019/5/7
- * 作用：高德导航
+ * 作用：高德导航工具类
  * */
 
 public class GdUtil {
