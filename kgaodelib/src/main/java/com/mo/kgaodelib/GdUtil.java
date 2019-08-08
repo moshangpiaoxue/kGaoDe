@@ -1,6 +1,8 @@
 package com.mo.kgaodelib;
 
+import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.amap.api.maps.model.Poi;
 import com.amap.api.navi.AmapNaviPage;
@@ -8,6 +10,8 @@ import com.amap.api.navi.AmapNaviParams;
 import com.amap.api.navi.AmapNaviType;
 import com.amap.api.navi.AmapPageType;
 import com.amap.api.navi.INaviInfoCallback;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.route.RouteSearch;
 
 /*
  * 作者：M
@@ -26,8 +30,24 @@ public class GdUtil {
      * @param callback     回调，可null
      */
     public static void startAMapNavigational(Context context, double endlatitude, double endlongitude, INaviInfoCallback callback) {
+        startAMapNavigational(context, 0, 0, endlatitude, endlongitude, callback);
+    }
+
+    /**
+     * 跳高德导航（跳进的是高德的h5导航页面）
+     *
+     * @param context        上下文
+     * @param startlatitude  起点纬度   传0以下默认当前纬度
+     * @param startlongitude 起点经度   传0以下默认当前经度
+     * @param endlatitude    终点纬度
+     * @param endlongitude   终点经度
+     * @param callback       回调
+     */
+    public static void startAMapNavigational(Context context, double startlatitude, double startlongitude, double endlatitude, double endlongitude, INaviInfoCallback callback) {
         //传入起点经纬度
-        com.amap.api.maps.model.LatLng startLatLng = new com.amap.api.maps.model.LatLng(GdConstant.latitude, GdConstant.longitude);
+        com.amap.api.maps.model.LatLng startLatLng = new com.amap.api.maps.model.LatLng(
+                startlatitude <= 0 ? GdConstant.latitude : startlatitude
+                , startlongitude <= 0 ? GdConstant.longitude : startlongitude);
         //传入终点经纬度
         com.amap.api.maps.model.LatLng endLatLng = new com.amap.api.maps.model.LatLng(endlatitude, endlongitude);
         //起点
@@ -38,5 +58,27 @@ public class GdUtil {
         amapNaviParams.setUseInnerVoice(true);
         AmapNaviPage.getInstance().showRouteActivity(context, amapNaviParams, callback);
     }
+
+
+    /**
+     * 开始 搜索路径规划方案
+     */
+    public void searchRouteResult(Activity mActivity, RouteSearch mRouteSearch, int mode, LatLonPoint mEndPoint) {
+        LatLonPoint mStartPoint = new LatLonPoint(GdConstant.latitude, GdConstant.longitude);//起点，39.942295,116.335891
+        if (mStartPoint == null) {
+            Toast.makeText(mActivity, "定位中，稍后再试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (mEndPoint == null) {
+            Toast.makeText(mActivity, "定位中，终点未设置", Toast.LENGTH_SHORT).show();
+        }
+        final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(
+                mStartPoint, mEndPoint);
+        // 第一个参数表示路径规划的起点和终点，第二个参数表示驾车模式，第三个参数表示途经点，第四个参数表示避让区域，第五个参数表示避让道路
+        RouteSearch.DriveRouteQuery query = new RouteSearch.DriveRouteQuery(fromAndTo, mode, null, null, "");
+        // 异步路径规划驾车模式查询
+        mRouteSearch.calculateDriveRouteAsyn(query);
+    }
+
 
 }
