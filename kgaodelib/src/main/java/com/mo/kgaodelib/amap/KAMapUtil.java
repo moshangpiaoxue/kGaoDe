@@ -1,6 +1,7 @@
 package com.mo.kgaodelib.amap;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 
@@ -16,6 +17,16 @@ public class KAMapUtil {
         this.aMap = mapView.getMap();
         setUiSettings(aMap.getUiSettings());
     }
+
+    /**
+     * 设置定位的监听
+     */
+    public KAMapUtil setLocationSource(LocationSource locationSource) {
+        aMap.setLocationSource(locationSource);
+        return this;
+
+    }
+
 
     /**
      * 显示定位层并且可以触发定位,默认是flase
