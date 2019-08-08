@@ -21,17 +21,17 @@ public class AMapLocationClientUtil {
     /**
      * 设置定位监听
      */
-    public AMapLocationClient setLocationListener(AMapLocationListener locationListener) {
+    public AMapLocationClientUtil setLocationListener(AMapLocationListener locationListener) {
         mLocationClient.setLocationListener(locationListener);
-        return mLocationClient;
+        return this;
     }
 
     /**
      * 设置定位参数
      */
-    public AMapLocationClient setLocationOption(AMapLocationClientOption option) {
+    public AMapLocationClientUtil setLocationOption(AMapLocationClientOption option) {
         mLocationClient.setLocationOption(option);
-        return mLocationClient;
+        return this;
 //        //初始化定位参数
 //        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
 //        //设置定位模式为Hight_Accuracy高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
@@ -50,11 +50,29 @@ public class AMapLocationClientUtil {
 //        mLocationClient.setLocationOption(mLocationOption);
     }
 
+    public AMapLocationClient getLocationClient() {
+        return mLocationClient;
+    }
+
     /**
      * 开始定位
      */
-    public AMapLocationClient startLocation() {
-        mLocationClient.startLocation();
-        return mLocationClient;
+    public void startLocation() {
+        if (mLocationClient != null) {
+            mLocationClient.startLocation();
+        }
+    }
+
+    public void pauseLocation() {
+        if (mLocationClient != null) {
+            mLocationClient.stopLocation();
+        }
+    }
+
+    public void destoryLocation() {
+        if (mLocationClient != null) {
+            mLocationClient.stopLocation();
+            mLocationClient.onDestroy();
+        }
     }
 }
