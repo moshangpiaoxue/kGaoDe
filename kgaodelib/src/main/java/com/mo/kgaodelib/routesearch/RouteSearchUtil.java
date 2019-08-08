@@ -1,10 +1,11 @@
-package com.mo.kgaodelib;
+package com.mo.kgaodelib.routesearch;
 
 import android.app.Activity;
 import android.widget.Toast;
 
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.route.RouteSearch;
+import com.mo.kgaodelib.GdConstant;
 
 /**
  * @ author：mo

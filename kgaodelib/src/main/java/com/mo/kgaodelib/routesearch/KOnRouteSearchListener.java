@@ -71,6 +71,12 @@ public abstract class KOnRouteSearchListener implements RouteSearch.OnRouteSearc
         onDriveRouteSearched(result, errorCode, drivingARouteOverlay);
     }
 
+    /**
+     * 驾驶规划
+     * @param result    规划结果
+     * @param errorCode 错误码
+     * @param drivingARouteOverlay  规划的路线
+     */
     protected abstract void onDriveRouteSearched(DriveRouteResult result, int errorCode, DrivingARouteAOverlay drivingARouteOverlay);
 
     /**
