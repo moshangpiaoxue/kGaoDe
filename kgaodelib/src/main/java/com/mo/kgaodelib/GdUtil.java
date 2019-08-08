@@ -60,25 +60,6 @@ public class GdUtil {
     }
 
 
-    /**
-     * 开始 搜索路径规划方案
-     */
-    public void searchRouteResult(Activity mActivity, RouteSearch mRouteSearch, int mode, LatLonPoint mEndPoint) {
-        LatLonPoint mStartPoint = new LatLonPoint(GdConstant.latitude, GdConstant.longitude);//起点，39.942295,116.335891
-        if (mStartPoint == null) {
-            Toast.makeText(mActivity, "定位中，稍后再试", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (mEndPoint == null) {
-            Toast.makeText(mActivity, "定位中，终点未设置", Toast.LENGTH_SHORT).show();
-        }
-        final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(
-                mStartPoint, mEndPoint);
-        // 第一个参数表示路径规划的起点和终点，第二个参数表示驾车模式，第三个参数表示途经点，第四个参数表示避让区域，第五个参数表示避让道路
-        RouteSearch.DriveRouteQuery query = new RouteSearch.DriveRouteQuery(fromAndTo, mode, null, null, "");
-        // 异步路径规划驾车模式查询
-        mRouteSearch.calculateDriveRouteAsyn(query);
-    }
 
 
 }
