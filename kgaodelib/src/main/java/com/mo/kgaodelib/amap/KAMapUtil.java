@@ -43,6 +43,7 @@ public class KAMapUtil {
         return this;
 
     }
+
     /**
      * 设置地图上的标记的点击事件
      */
@@ -50,5 +51,9 @@ public class KAMapUtil {
         aMap.setOnMarkerClickListener(onMarkerClickListener);
         return this;
 
+    }
+
+    public AMap getMap() {
+        return aMap;
     }
 }
