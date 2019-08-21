@@ -11,11 +11,11 @@ import com.amap.api.maps.UiSettings;
  * @ 功能： AMap  地图工具类
  */
 public class KAMapUtil {
-    private AMap aMap;
+    protected AMap aMap;
 
     public KAMapUtil(MapView mapView) {
         this.aMap = mapView.getMap();
-        setUiSettings(aMap.getUiSettings());
+//        setUiSettings(aMap.getUiSettings());
     }
 
     /**

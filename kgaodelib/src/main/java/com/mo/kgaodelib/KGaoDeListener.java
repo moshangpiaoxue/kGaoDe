@@ -7,7 +7,7 @@ import com.amap.api.maps.model.Marker;
 /**
  * @ author：mo
  * @ data：2019/6/3:9:35
- * @ 功能：
+ * @ 功能：地图事件监听
  */
 public interface KGaoDeListener {
     void onLocationChanged(AMapLocation aMapLocation);//定位监听
