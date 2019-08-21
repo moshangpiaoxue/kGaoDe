@@ -15,7 +15,12 @@ public class KAMapUtil {
 
     public KAMapUtil(MapView mapView) {
         this.aMap = mapView.getMap();
-//        setUiSettings(aMap.getUiSettings());
+        setUiSettings(aMap.getUiSettings());
+        setLocationStyle();
+    }
+
+    private void setLocationStyle() {
+
     }
 
     /**
@@ -28,14 +33,14 @@ public class KAMapUtil {
     }
 
 
-    /**
-     * 显示定位层并且可以触发定位,默认是flase
-     */
-    public KAMapUtil setMyLocationEnabled(boolean isShowLocation) {
-        aMap.setMyLocationEnabled(isShowLocation);
-        return this;
-
-    }
+//    /**
+//     * 显示定位层并且可以触发定位,默认是flase
+//     */
+//    public KAMapUtil setMyLocationEnabled(boolean isShowLocation) {
+//        aMap.setMyLocationEnabled(isShowLocation);
+//        return this;
+//
+//    }
 
     /**
      * 设置UI设置
