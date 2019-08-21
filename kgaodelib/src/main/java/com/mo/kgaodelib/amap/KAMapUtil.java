@@ -17,7 +17,7 @@ public class KAMapUtil {
     public KAMapUtil(MapView mapView) {
         this.aMap = mapView.getMap();
         setUiSettings(aMap.getUiSettings());
-        setLocationStyle();
+//        setLocationStyle();
     }
 
     public void setLocationStyle() {
